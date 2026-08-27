@@ -189,7 +189,7 @@ trait Lockable
      */
     public function markLocked(): self
     {
-        $this->setLocked(true)->save();
+        $this->refresh()->setLocked(true)->save();
 
         return $this;
     }
@@ -201,7 +201,7 @@ trait Lockable
      */
     public function markUnlocked(): self
     {
-        $this->setUnlocked()->save();
+        $this->refresh()->setUnlocked()->save();
 
         return $this;
     }
