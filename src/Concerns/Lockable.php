@@ -2,13 +2,14 @@
 
 namespace TestMonitor\Lockable\Concerns;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use TestMonitor\Lockable\Contracts\IsLockable;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use TestMonitor\Lockable\Exceptions\ModelLockedException;
 
 /**
- * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin Model
  */
 trait Lockable
 {
@@ -32,8 +33,6 @@ trait Lockable
 
     /**
      * Check if the model can be deleted when locked.
-     *
-     * @return bool
      */
     public function canDeleteWhenLocked(): bool
     {
@@ -42,8 +41,6 @@ trait Lockable
 
     /**
      * Check if the model can be restored while locked.
-     *
-     * @return bool
      */
     public function canRestoreWhileLocked(): bool
     {
@@ -52,8 +49,6 @@ trait Lockable
 
     /**
      * Check if the model can be saved while locked.
-     *
-     * @return bool
      */
     public function canSaveWhileLocked(): bool
     {
@@ -65,8 +60,6 @@ trait Lockable
 
     /**
      * Get the dirty attributes of the model excluding lock exceptions.
-     *
-     * @return array
      */
     protected function dirtyWithoutLockExceptions(): array
     {
@@ -78,8 +71,6 @@ trait Lockable
 
     /**
      * Get the column name used for locking the model.
-     *
-     * @return string
      */
     public function getLockColumn(): string
     {
@@ -88,8 +79,6 @@ trait Lockable
 
     /**
      * Get the exceptions that should not trigger a lock exception.
-     *
-     * @return array
      */
     public function getLockExceptions(): array
     {
@@ -98,8 +87,6 @@ trait Lockable
 
     /**
      * Check if the model is currently locked.
-     *
-     * @return bool
      */
     public function isLocked(): bool
     {
@@ -108,8 +95,6 @@ trait Lockable
 
     /**
      * Check if the model is currently unlocked.
-     *
-     * @return bool
      */
     public function isUnlocked(): bool
     {
@@ -118,8 +103,6 @@ trait Lockable
 
     /**
      * Check if the model is currently being locked.
-     *
-     * @return bool
      */
     protected function isLocking(): bool
     {
@@ -128,8 +111,6 @@ trait Lockable
 
     /**
      * Check if the model is currently being unlocked.
-     *
-     * @return bool
      */
     protected function isUnlocking(): bool
     {
@@ -138,8 +119,6 @@ trait Lockable
 
     /**
      * Check if the model is both lockable and soft deletable.
-     *
-     * @return bool
      */
     protected function isLockableAndSoftDeletable(): bool
     {
@@ -149,8 +128,6 @@ trait Lockable
 
     /**
      * Check if the model is restoring while being locked.
-     *
-     * @return bool
      */
     protected function isRestoringWhileLocked(): bool
     {
@@ -161,9 +138,6 @@ trait Lockable
 
     /**
      * Set the lock state of the model.
-     *
-     * @param bool $state
-     * @return self
      */
     public function setLocked(bool $state = true): self
     {
@@ -174,8 +148,6 @@ trait Lockable
 
     /**
      * Set the model to an unlocked state.
-     *
-     * @return self
      */
     public function setUnlocked(): self
     {
@@ -184,8 +156,6 @@ trait Lockable
 
     /**
      * Mark the model as locked and save the state.
-     *
-     * @return self
      */
     public function markLocked(): self
     {
@@ -196,8 +166,6 @@ trait Lockable
 
     /**
      * Mark the model as unlocked and save the state.
-     *
-     * @return self
      */
     public function markUnlocked(): self
     {
@@ -208,9 +176,6 @@ trait Lockable
 
     /**
      * Execute a callback while the model is locked.
-     *
-     * @param callable $callback
-     * @return self
      */
     public function whileLocked(callable $callback): self
     {
@@ -227,9 +192,6 @@ trait Lockable
 
     /**
      * Execute a callback while the model is unlocked.
-     *
-     * @param callable $callback
-     * @return self
      */
     public function whileUnlocked(callable $callback): self
     {
@@ -246,9 +208,6 @@ trait Lockable
 
     /**
      * Scope a query to only include locked models.
-     *
-     * @param \Illuminate\Contracts\Database\Eloquent\Builder $query
-     * @return \Illuminate\Contracts\Database\Eloquent\Builder
      */
     public function scopeLocked(Builder $query): Builder
     {
@@ -257,9 +216,6 @@ trait Lockable
 
     /**
      * Scope a query to only include unlocked models.
-     *
-     * @param \Illuminate\Contracts\Database\Eloquent\Builder $query
-     * @return \Illuminate\Contracts\Database\Eloquent\Builder
      */
     public function scopeUnlocked(Builder $query): Builder
     {

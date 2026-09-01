@@ -3,21 +3,21 @@
 namespace TestMonitor\Lockable\Exceptions;
 
 use RuntimeException;
+use TestMonitor\Lockable\Contracts\IsLockable;
 
 class ModelLockedException extends RuntimeException
 {
     /**
      * The affected lockable Eloquent model.
      *
-     * @var \TestMonitor\Lockable\Contracts\IsLockable
+     * @var IsLockable
      */
     protected $model;
 
     /**
      * Set the affected Eloquent model.
      *
-     * @param \TestMonitor\Lockable\Contracts\IsLockable $model
-     * @return static
+     * @param  IsLockable  $model
      */
     public function setModel($model): static
     {
@@ -33,7 +33,7 @@ class ModelLockedException extends RuntimeException
     /**
      * Get the affected Eloquent model.
      *
-     * @return null|\TestMonitor\Lockable\Contracts\IsLockable
+     * @return null|IsLockable
      */
     public function getModel()
     {
