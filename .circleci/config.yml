@@ -8,7 +8,7 @@ jobs:
     working_directory: ~/testmonitor/eloquent-lockable
 
     docker:
-      - image: cimg/php:8.2
+      - image: cimg/php:8.4
 
     steps:
       - run:
@@ -27,7 +27,7 @@ jobs:
     working_directory: ~/testmonitor/eloquent-lockable
 
     docker:
-      - image: cimg/php:8.2
+      - image: cimg/php:8.4
 
     steps:
       - attach_workspace:
@@ -64,22 +64,17 @@ jobs:
     working_directory: ~/testmonitor/eloquent-lockable
 
     docker:
-      - image: cimg/php:8.2
+      - image: cimg/php:8.4
 
     steps:
-      - run:
-          name: Install System Dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y sqlite3 libsqlite3-dev
+      - attach_workspace:
+          at: .
       - run:
           name: Install PCOV
           command: |
             sudo apt-get update
             sudo apt install php-common
             sudo pecl install pcov
-      - attach_workspace:
-          at: .
       - run:
           name: Run Unit Tests
           command: |
@@ -90,7 +85,6 @@ jobs:
           destination: phpunit
       - store_test_results:
           path: ./logs
-
       - codecov/upload:
           report_type: coverage
           disable_search: true
