@@ -33,11 +33,19 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Pint
+          command: |
+            mkdir -p ./logs/pint
+            vendor/bin/pint --test --format=junit > logs/pint/junit.xml
+      - run:
           name: PHPCS
           command: |
             mkdir -p ./logs/phpcs
             vendor/bin/phpcs -v --report=junit --report-file=logs/phpcs/junit.xml src/
 
+      - store_artifacts:
+          path: ./logs/pint
+          destination: pint
       - store_artifacts:
           path: ./logs/phpcs
           destination: phpcs
