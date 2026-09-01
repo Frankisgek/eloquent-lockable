@@ -9,7 +9,7 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 abstract class TestCase extends OrchestraTestCase
 {
     /**
-     * @param  Application  $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app)
     {

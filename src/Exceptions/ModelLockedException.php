@@ -17,7 +17,7 @@ class ModelLockedException extends RuntimeException
     /**
      * Set the affected Eloquent model.
      *
-     * @param  IsLockable  $model
+     * @param IsLockable $model
      */
     public function setModel($model): static
     {
