@@ -2,8 +2,8 @@
 
 namespace TestMonitor\Lockable\Exceptions;
 
-use TestMonitor\Lockable\Contracts\IsLockable;
 use RuntimeException;
+use TestMonitor\Lockable\Contracts\IsLockable;
 
 class ModelLockedException extends RuntimeException
 {

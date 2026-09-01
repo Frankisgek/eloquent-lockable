@@ -33,10 +33,10 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: PHP CS Fixer
+          name: Pint
           command: |
-            mkdir -p ./logs/phpcsfixer
-            vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --diff --dry-run --format=junit > logs/phpcsfixer/junit.xml
+            mkdir -p ./logs/pint
+            vendor/bin/pint --test --format=junit > logs/pint/junit.xml
       - run:
           name: PHPCS
           command: |
@@ -49,8 +49,8 @@ jobs:
           vendor/bin/rector process --dry-run --no-ansi --no-progress-bar --rules-summary > logs/rector/rector.log
 
       - store_artifacts:
-          path: ./logs/phpcsfixer
-          destination: phpcsfixer
+          path: ./logs/pint
+          destination: pint
       - store_artifacts:
           path: ./logs/phpcs
           destination: phpcs

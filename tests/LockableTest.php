@@ -2,14 +2,14 @@
 
 namespace TestMonitor\Lockable\Test;
 
-use PHPUnit\Framework\Attributes\Test;
-use TestMonitor\Lockable\Test\Models\User;
 use Illuminate\Database\Eloquent\Collection;
-use TestMonitor\Lockable\Test\Models\SoftDeletableUser;
+use PHPUnit\Framework\Attributes\Test;
 use TestMonitor\Lockable\Exceptions\ModelLockedException;
-use TestMonitor\Lockable\Test\Models\UserWithLockExceptions;
 use TestMonitor\Lockable\Test\Models\DeletableWhenLockedUser;
+use TestMonitor\Lockable\Test\Models\SoftDeletableUser;
 use TestMonitor\Lockable\Test\Models\SoftDeletableWhenLockedUser;
+use TestMonitor\Lockable\Test\Models\User;
+use TestMonitor\Lockable\Test\Models\UserWithLockExceptions;
 
 final class LockableTest extends TestCase
 {

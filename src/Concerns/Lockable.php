@@ -2,10 +2,10 @@
 
 namespace TestMonitor\Lockable\Concerns;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use TestMonitor\Lockable\Contracts\IsLockable;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use TestMonitor\Lockable\Exceptions\ModelLockedException;
 
 /**
