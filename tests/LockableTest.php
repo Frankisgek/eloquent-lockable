@@ -11,7 +11,7 @@ use TestMonitor\Lockable\Test\Models\SoftDeletableWhenLockedUser;
 use TestMonitor\Lockable\Test\Models\User;
 use TestMonitor\Lockable\Test\Models\UserWithLockExceptions;
 
-class LockableTest extends TestCase
+final class LockableTest extends TestCase
 {
     #[Test]
     public function it_allows_updating_when_not_locked()
@@ -117,7 +117,7 @@ class LockableTest extends TestCase
         $model->note = 'Some note';
         $model->save();
 
-        $this->assertEquals('Some note', $model->note);
+        $this->assertSame('Some note', $model->note);
     }
 
     #[Test]
@@ -184,7 +184,7 @@ class LockableTest extends TestCase
         $results = User::query()->locked()->get();
 
         $this->assertInstanceOf(Collection::class, $results);
-        $this->assertEquals(2, $results->count());
+        $this->assertCount(2, $results);
         $this->assertEquals('Locked #1', $results->first()->name);
         $this->assertEquals('Locked #2', $results->last()->name);
     }
@@ -199,7 +199,7 @@ class LockableTest extends TestCase
         $results = User::query()->unlocked()->get();
 
         $this->assertInstanceOf(Collection::class, $results);
-        $this->assertEquals(1, $results->count());
+        $this->assertCount(1, $results);
         $this->assertEquals('Unlocked #1', $results->first()->name);
     }
 }

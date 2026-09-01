@@ -122,7 +122,7 @@ trait Lockable
      */
     protected function isLockableAndSoftDeletable(): bool
     {
-        return in_array(SoftDeletes::class, class_uses_recursive(get_class($this))) &&
+        return in_array(SoftDeletes::class, class_uses_recursive($this::class)) &&
             method_exists($this, 'getDeletedAtColumn');
     }
 

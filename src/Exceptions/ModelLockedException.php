@@ -23,7 +23,7 @@ class ModelLockedException extends RuntimeException
     {
         $this->model = $model;
 
-        $modelName = get_class($model);
+        $modelName = $model::class;
 
         $this->message = "[{$modelName}] is locked and cannot be modified or deleted ({$model->getKey()})";
 
